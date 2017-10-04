@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
+    <!-- The background color -->
+    <item android:drawable="@color/white"/>
+    <!-- Your product logo -->
+    <item>
+        <bitmap
+            android:src="@mipmap/ic_launcher"
+            android:gravity="center"/>
+    </item>
+</layer-list>

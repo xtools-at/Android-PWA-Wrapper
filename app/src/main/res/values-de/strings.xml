@@ -1,0 +1,4 @@
+<resources>
+    <string name="offline_heading">Keine Internetverbindung.</string>
+    <string name="offline_description">Hier tippen um es erneut zu versuchen!</string>
+</resources>

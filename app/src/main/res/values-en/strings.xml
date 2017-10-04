@@ -1,0 +1,4 @@
+<resources>
+    <string name="offline_heading">You are offline.</string>
+    <string name="offline_description">Tap here to retry!</string>
+</resources>
