@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     // set icon in recent activity view to a white one to be visible in the app bar
     private void changeRecentAppsIcon() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Bitmap iconWhite = BitmapFactory.decodeResource(getResources(), R.drawable.icon_white);
+            Bitmap iconWhite = BitmapFactory.decodeResource(getResources(), R.drawable.icon_appbar);
 
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getTheme();
