@@ -162,4 +162,24 @@ public class WebViewHelper {
             }
         });
     }
+
+    public void onPause() {
+        webView.onPause();
+    }
+
+    public void onResume() {
+        webView.onResume();
+    }
+
+    public boolean goBack() {
+        if (webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+        return false;
+    }
+
+    public void loadHome() {
+        webView.loadUrl(Constants.WEBAPP_URL);
+    }
 }
