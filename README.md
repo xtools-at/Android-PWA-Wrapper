@@ -6,8 +6,8 @@ Drafted for the [Android App](https://play.google.com/store/apps/details?id=at.x
 
 ## Why would I use a wrapper?
 I know, using a Wrapper-App to display a Website can feel a bit odd. But there are a few good reasons why you'd package your Web App like this.
-If you've got a very sophisticated UI already, it might make sense not to rebuild it from scratch for multiple platforms, especally if it's a Single Page Application already, that doesn't "feel" like a Website.
-There might be as well less competition for a given niche on App Stores, in comparison to Google directly. With [leasingrechnen.at](https://www.leasingrechnen.at), I've got easily into the Top 10 Apps on Google Play for my country, whereas Google Search put me on page 9 as the Site is relatively new.
+- If you've got a very sophisticated UI already, it might make sense not to rebuild it from scratch for multiple platforms, especally if it's a Single Page Application already, that doesn't "feel" like a Website.
+- There might be as well less competition for a given niche on App Stores, in comparison to Google directly. With [leasingrechnen.at](https://www.leasingrechnen.at), I've got easily into the Top 10 Apps on Google Play for my country, whereas Google Search put me on page 9 as the Site is relatively new.
 
 ## What it does
 - Sets up a WebView just the way PWAs/SPAs like it (e.g. enables App cache and DOM storage, ...).
@@ -25,7 +25,7 @@ There might be as well less competition for a given niche on App Stores, in comp
 - Put your own icons in place:
     - Add your own _ic_launcher.png_ and _ic_launcher_round.png_ in the `mipmap` folders
     - Add your own _ic_appbar.png_ in the `drawables` folders. This is displayed in Android's _Recent Apps_ View on your app bar, so it should look nicely when placed on top of your primary color.
-    - I recommend using [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio) to get the icons ready in a breeze
+    - I recommend using [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio) to get the icons ready in no time
 - Change the package name in `app/build.gradle`, *applicationId*
 - Check `Constants.java` for more options
 - Build App in Android Studio
