@@ -16,6 +16,7 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
 - Opens all external URLs in the device's Browser instead.
 - Checks for Internet connection and fetches Updates for your Web App accordingly.
 - Is compatible down to JellyBean, although it's recommended to build for SDK Version >= 19 (KitKat). Building for SDK Version >= 21 (Lollipop) puts you on the safe side without having to worry too much about Browser support.
+- APK-size < 1.4 MB. The latest cat video from WhatsApp weighs heavier ;)
 
 ## How to build your own
 - Clone/fork repository
@@ -29,6 +30,8 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
 - Change the package name in `app/build.gradle`, *applicationId*
 - Check `Constants.java` for more options
 - Build App in Android Studio
+
+### I don't accept Feature Requests, only Pull Requests :)
 
 ## License
 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) - if you use it, we wanna see it!
