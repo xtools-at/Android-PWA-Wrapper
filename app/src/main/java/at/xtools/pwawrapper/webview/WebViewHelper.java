@@ -63,8 +63,10 @@ public class WebViewHelper {
         }
     }
 
-    // public method changing cache settings according to network availability
-    public void checkUseCache() {
+    // public method changing cache settings according to network availability.
+    // retrieve content from cache primarily if not connected,
+    // allow fetching from web too otherwise to get updates.
+    public void forceCacheIfOffline() {
         useCache(!isNetworkAvailable());
     }
 
@@ -90,7 +92,7 @@ public class WebViewHelper {
         webSettings.setDatabaseEnabled(true);
 
         // retrieve content from cache primarily if not connected
-        checkUseCache();
+        forceCacheIfOffline();
 
         // set User Agent
         if (Constants.OVERRIDE_USER_AGENT || Constants.POSTFIX_USER_AGENT) {

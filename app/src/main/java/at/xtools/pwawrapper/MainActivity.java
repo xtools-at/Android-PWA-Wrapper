@@ -39,9 +39,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         webViewHelper.onResume();
-        // retrieve content from cache primarily if not connected,
-        // fetch from web otherwise to get updates.
-        webViewHelper.checkUseCache();
+        // retrieve content from cache primarily if not connected
+        webViewHelper.forceCacheIfOffline();
         super.onResume();
     }
 
