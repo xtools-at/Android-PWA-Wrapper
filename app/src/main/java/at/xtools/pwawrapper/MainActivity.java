@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
         webViewHelper.onResume();
         // retrieve content from cache primarily if not connected,
         // fetch from web otherwise to get updates.
-        webViewHelper.useCache(
-                !webViewHelper.isNetworkAvailable()
-        );
+        webViewHelper.checkUseCache();
         super.onResume();
     }
 

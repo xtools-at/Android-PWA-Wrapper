@@ -41,7 +41,7 @@ public class WebViewHelper {
      * Doesn't check for actual Internet connection!
      * @return {boolean} True if connected to Network.
      */
-    public boolean isNetworkAvailable() {
+    private boolean isNetworkAvailable() {
         ConnectivityManager manager =
                 (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
@@ -55,7 +55,7 @@ public class WebViewHelper {
     }
 
     // manipulate cache settings to make sure our PWA gets updated
-    public void useCache(Boolean use) {
+    private void useCache(Boolean use) {
         if (use) {
             webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         } else {
@@ -63,6 +63,12 @@ public class WebViewHelper {
         }
     }
 
+    // public method changing cache settings according to network availability
+    public void checkUseCache() {
+        useCache(!isNetworkAvailable());
+    }
+
+    // handles initial setup of webview
     public void setupWebView() {
         // accept cookies
         CookieManager.getInstance().setAcceptCookie(true);
@@ -84,7 +90,7 @@ public class WebViewHelper {
         webSettings.setDatabaseEnabled(true);
 
         // retrieve content from cache primarily if not connected
-        useCache(!isNetworkAvailable());
+        checkUseCache();
 
         // set User Agent
         if (Constants.OVERRIDE_USER_AGENT || Constants.POSTFIX_USER_AGENT) {
@@ -163,6 +169,7 @@ public class WebViewHelper {
         });
     }
 
+    // Lifecycle callbacks
     public void onPause() {
         webView.onPause();
     }
@@ -171,6 +178,7 @@ public class WebViewHelper {
         webView.onResume();
     }
 
+    // handle back button press
     public boolean goBack() {
         if (webView.canGoBack()) {
             webView.goBack();
@@ -179,6 +187,7 @@ public class WebViewHelper {
         return false;
     }
 
+    // load app startpage
     public void loadHome() {
         webView.loadUrl(Constants.WEBAPP_URL);
     }
