@@ -91,6 +91,12 @@ public class WebViewHelper {
         webSettings.setAppCacheEnabled(true);
         webSettings.setDatabaseEnabled(true);
 
+        // enable mixed content mode conditionally
+        if (Constants.ENABLE_MIXED_CONTENT
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
+
         // retrieve content from cache primarily if not connected
         forceCacheIfOffline();
 

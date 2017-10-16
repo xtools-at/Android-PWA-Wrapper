@@ -18,4 +18,6 @@ public class Constants {
     // lower it, if you've got server-side rendering (e.g. to 35),
     // bump it up to ~98 if you don't have SSR or a loading screen in your web app
     public static int PROGRESS_THRESHOLD = 65;
+    // turn on/off mixed content (both https+http within one page) for API >= 21
+    public static boolean ENABLE_MIXED_CONTENT = true;
 }
