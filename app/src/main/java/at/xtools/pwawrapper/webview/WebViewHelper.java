@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -144,7 +143,6 @@ public class WebViewHelper {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                Log.d("TAG", "started url: "+url);
                 handleUrlLoad(view, url);
             }
 
@@ -152,23 +150,20 @@ public class WebViewHelper {
             @Deprecated
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Log.d("TAG", "receivedError Old");
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                    handleLoadError(view, failingUrl, errorCode);
+                    handleLoadError(errorCode);
                 }
             }
 
             @TargetApi(Build.VERSION_CODES.M)
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                Log.d("TAG", "receivedError New");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     // new API method calls this on every error for each resource.
                     // we only want to interfere if the page itself got problems.
                     String url = request.getUrl().toString();
                     if (view.getUrl().equals(url)) {
-                        Log.d("TAG", "receivedError New page match " + error.getDescription().toString());
-                        handleLoadError(view, url, error.getErrorCode());
+                        handleLoadError(error.getErrorCode());
                     }
                 }
             }
@@ -192,11 +187,10 @@ public class WebViewHelper {
             .show();
     }
     // handle load errors
-    private void handleLoadError(WebView view, String url, int errorCode) {
+    private void handleLoadError(int errorCode) {
         if (errorCode != WebViewClient.ERROR_UNSUPPORTED_SCHEME) {
             uiManager.setOffline(true);
         } else {
-            Log.d("TAG", "unsupported scheme!");
             // Unsupported Scheme, recover
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -213,15 +207,6 @@ public class WebViewHelper {
         if (!url.startsWith(Constants.WEBAPP_URL)) {
             // stop loading
             view.stopLoading();
-
-            /*
-            // handle non-http protocols, like mailto: or whatsapp:
-            if (!url.startsWith("http")) {
-                // this hit the WebView's onReceivedError callback, recover
-                goBack();
-                uiManager.setOffline(false);
-            }
-            */
 
             // open external URL in Browser/3rd party apps instead
             try {
