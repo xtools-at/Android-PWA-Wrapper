@@ -37,7 +37,7 @@ public class UIManager {
         offlineContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.reload();
+                webView.loadUrl(Constants.WEBAPP_URL);
                 setOffline(false);
             }
         });
