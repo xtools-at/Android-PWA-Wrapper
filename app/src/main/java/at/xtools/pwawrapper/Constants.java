@@ -5,6 +5,7 @@ public class Constants {
     // Root page
     public static String WEBAPP_URL = "https://www.leasingrechnen.at/";
     public static String WEBAPP_HOST = "leasingrechnen.at"; // used for checking Intent-URLs
+    public static String WEBAPP_HOST_SHORT = "lsng.me";
 
 	// User Agent tweaks
     public static boolean POSTFIX_USER_AGENT = true; // set to true to append USER_AGENT_POSTFIX to user agent

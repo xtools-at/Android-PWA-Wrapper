@@ -246,7 +246,7 @@ public class WebViewHelper {
 
     // load URL from intent
     public void loadIntentUrl(String url) {
-        if (!url.equals("") && url.contains(Constants.WEBAPP_HOST)) {
+        if (!url.equals("") && (url.contains(Constants.WEBAPP_HOST) || url.contains(Constants.WEBAPP_HOST_SHORT))) {
             webView.loadUrl(url);
         } else {
             // Fallback
