@@ -243,4 +243,14 @@ public class WebViewHelper {
     public void loadHome() {
         webView.loadUrl(Constants.WEBAPP_URL);
     }
+
+    // load URL from intent
+    public void loadIntentUrl(String url) {
+        if (!url.equals("") && url.contains(Constants.WEBAPP_HOST)) {
+            webView.loadUrl(url);
+        } else {
+            // Fallback
+            loadHome();
+        }
+    }
 }
