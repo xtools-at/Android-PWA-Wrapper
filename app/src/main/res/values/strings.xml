@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Leasing Rechner</string>
+    <string name="app_name" translatable="false">Lvr</string>
     <string name="offline_heading">You are offline.</string>
     <string name="offline_description">Tap here to retry!</string>
     <string name="noapp_heading">App not found.</string>
