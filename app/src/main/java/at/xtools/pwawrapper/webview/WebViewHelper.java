@@ -104,7 +104,7 @@ public class WebViewHelper {
 
         // set User Agent
         if (Constants.OVERRIDE_USER_AGENT || Constants.POSTFIX_USER_AGENT) {
-            String userAgent = "";
+            String userAgent = webSettings.getUserAgentString();
             if (Constants.OVERRIDE_USER_AGENT) {
                 userAgent = Constants.USER_AGENT;
             }
