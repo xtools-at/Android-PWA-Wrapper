@@ -104,7 +104,7 @@ public class WebViewHelper {
 
         // set User Agent
         if (Constants.OVERRIDE_USER_AGENT || Constants.POSTFIX_USER_AGENT) {
-            String userAgent = "";
+            String userAgent = webSettings.getUserAgentString();
             if (Constants.OVERRIDE_USER_AGENT) {
                 userAgent = Constants.USER_AGENT;
             }
@@ -206,7 +206,9 @@ public class WebViewHelper {
         // prevent loading content that isn't ours
         if (!url.startsWith(Constants.WEBAPP_URL)) {
             // stop loading
+            // stopping only would cause the PWA to freeze, need to reload the app as a workaround
             view.stopLoading();
+            view.reload();
 
             // open external URL in Browser/3rd party apps instead
             try {

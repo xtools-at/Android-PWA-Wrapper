@@ -1,8 +1,13 @@
 # Android-PWA-Wrapper
 
-A sample Android Wrapper application to create a native Android App from an offline-capable Progressive Web App.
+An Android Wrapper application to create native Android Apps from an offline-capable Progressive Web App.
 
 Drafted for the [Android App](https://play.google.com/store/apps/details?id=at.xtools.leasingrechner&utm_source=github.com&utm_medium=link&utm_campaign=store_visit) of my [Leasing Calculator](https://www.leasingrechnen.at) Web App using [React](https://github.com/facebook/react), [Redux](https://github.com/reactjs/redux), [Materialize.css](https://github.com/Dogfalo/materialize) and a lot of Offline-First love over at [leasingrechnen.at](https://www.leasingrechnen.at).
+
+## Looking for iOS or Desktop?
+Check out my other projects:
+- [iOS-PWA-Wrapper](https://github.com/xtools-at/iOS-PWA-Wrapper) for iOS
+- [Electron-PWA-Wrapper](https://github.com/xtools-at/Electron-PWA-Wrapper) for macOS, Windows and Linux
 
 ## Why would I use a wrapper?
 I know, using a Wrapper-App to display a Website can feel a bit odd. But there are a few good reasons why you'd package your Web App like this.
@@ -19,6 +24,7 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
 - APK-size < 1.4 MB. The latest cat video from WhatsApp weighs heavier ;)
 
 ## How to build your own
+- Get Android Studio 3.4+
 - Clone/fork repository
 - Put your Web App's URL in _WEBAPP_URL_ in `Constants.java`
 - Replace *app_name* in `strings.xml` with the name of your App
@@ -36,3 +42,4 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
 
 ## License
 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) - if you use it, we wanna see it!
+Other licensing options are available on inquiry.
