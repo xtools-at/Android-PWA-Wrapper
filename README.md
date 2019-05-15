@@ -24,6 +24,7 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
 - APK-size < 1.4 MB. The latest cat video from WhatsApp weighs heavier ;)
 
 ## How to build your own
+- Get Android Studio 3.4+
 - Clone/fork repository
 - Put your Web App's URL in _WEBAPP_URL_ in `Constants.java`
 - Replace *app_name* in `strings.xml` with the name of your App
