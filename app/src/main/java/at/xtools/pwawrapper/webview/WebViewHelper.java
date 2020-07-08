@@ -167,6 +167,19 @@ public class WebViewHelper {
                     }
                 }
             }
+			            //Handle if request comes from same hostname. If not, it may be an intent
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
+                if((String.valueOf(request.getUrl())).contains(Constants.WEBAPP_HOST)) {
+                    view.loadUrl(String.valueOf(request.getUrl()));
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                    view.getContext().startActivity(intent);
+                }
+
+                return true;
+            }
         });
     }
 
