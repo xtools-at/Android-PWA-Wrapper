@@ -2,15 +2,13 @@ package at.xtools.pwawrapper;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import at.xtools.pwawrapper.ui.UIManager;
 import at.xtools.pwawrapper.webview.WebViewHelper;
 
 public class MainActivity extends AppCompatActivity {
-    // Globals
-    private UIManager uiManager;
     private WebViewHelper webViewHelper;
     private boolean intentHandled = false;
 
@@ -22,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Setup Helpers
-        uiManager = new UIManager(this);
+        // Globals
+        UIManager uiManager = new UIManager(this);
         webViewHelper = new WebViewHelper(this, uiManager);
 
         // Setup App

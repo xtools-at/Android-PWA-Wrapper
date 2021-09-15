@@ -1,5 +1,6 @@
 package at.xtools.pwawrapper.webview;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,15 +27,15 @@ import at.xtools.pwawrapper.ui.UIManager;
 
 public class WebViewHelper {
     // Instance variables
-    private Activity activity;
-    private UIManager uiManager;
-    private WebView webView;
-    private WebSettings webSettings;
+    private final Activity activity;
+    private final UIManager uiManager;
+    private final WebView webView;
+    private final WebSettings webSettings;
 
     public WebViewHelper(Activity activity, UIManager uiManager) {
         this.activity = activity;
         this.uiManager = uiManager;
-        this.webView = (WebView) activity.findViewById(R.id.webView);
+        this.webView = activity.findViewById(R.id.webView);
         this.webSettings = webView.getSettings();
     }
 
@@ -73,6 +74,7 @@ public class WebViewHelper {
     }
 
     // handles initial setup of webview
+    @SuppressLint("SetJavaScriptEnabled")
     public void setupWebView() {
         // accept cookies
         CookieManager.getInstance().setAcceptCookie(true);
@@ -82,20 +84,13 @@ public class WebViewHelper {
         webSettings.setSupportMultipleWindows(true);
 
         // PWA settings
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            webSettings.setDatabasePath(activity.getApplicationContext().getFilesDir().getAbsolutePath());
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            webSettings.setAppCacheMaxSize(Long.MAX_VALUE);
-        }
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCachePath(activity.getApplicationContext().getCacheDir().getAbsolutePath());
         webSettings.setAppCacheEnabled(true);
         webSettings.setDatabaseEnabled(true);
 
         // enable mixed content mode conditionally
-        if (Constants.ENABLE_MIXED_CONTENT
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Constants.ENABLE_MIXED_CONTENT) {
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         }
 
@@ -150,21 +145,16 @@ public class WebViewHelper {
             @Deprecated
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                    handleLoadError(errorCode);
-                }
             }
 
             @TargetApi(Build.VERSION_CODES.M)
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    // new API method calls this on every error for each resource.
-                    // we only want to interfere if the page itself got problems.
-                    String url = request.getUrl().toString();
-                    if (view.getUrl().equals(url)) {
-                        handleLoadError(error.getErrorCode());
-                    }
+                // new API method calls this on every error for each resource.
+                // we only want to interfere if the page itself got problems.
+                String url = request.getUrl().toString();
+                if (view.getUrl().equals(url)) {
+                    handleLoadError(error.getErrorCode());
                 }
             }
         });
@@ -192,17 +182,13 @@ public class WebViewHelper {
             uiManager.setOffline(true);
         } else {
             // Unsupported Scheme, recover
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    goBack();
-                }
-            }, 100);
+            new Handler().postDelayed(() -> goBack(), 100);
         }
     }
 
     // handle external urls
-    private boolean handleUrlLoad(WebView view, String url) {
+    @SuppressLint("QueryPermissionsNeeded")
+    private void handleUrlLoad(WebView view, String url) {
         // prevent loading content that isn't ours
         if (!url.startsWith(Constants.WEBAPP_URL)) {
             // stop loading
@@ -222,13 +208,11 @@ public class WebViewHelper {
                 showNoAppDialog(activity);
             }
             // return value for shouldOverrideUrlLoading
-            return true;
         } else {
             // let WebView load the page!
             // activate loading animation screen
             uiManager.setLoading(true);
             // return value for shouldOverrideUrlLoading
-            return false;
         }
     }
 
