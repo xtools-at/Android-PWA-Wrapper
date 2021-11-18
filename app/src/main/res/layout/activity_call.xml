@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/call_bg">
+
+    <FrameLayout
+        android:id="@+id/callActionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/callInfoLayout">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:paddingHorizontal="50dp"
+            android:paddingVertical="60dp">
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/reject_call_btn"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/rjt_btn" />
+
+                <ImageButton
+                    android:id="@+id/accept_call_btn"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/acpt_btn" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/callInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="193dp"
+        android:paddingStart="30dp"
+        android:paddingTop="33dp"
+        android:paddingEnd="30dp">
+
+        <TextView
+            android:id="@+id/callStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/incoming_call"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/callerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/callStatus"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
