@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.webkit.CookieManager;
 import android.webkit.HttpAuthHandler;
+import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -139,6 +140,23 @@ public class WebViewHelper {
             public void onProgressChanged(WebView view, int newProgress) {
                 uiManager.setLoadingProgress(newProgress);
                 super.onProgressChanged(view, newProgress);
+            }
+
+            @Override
+            public void onPermissionRequest(final PermissionRequest request) {
+                WebViewHelper.this.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        request.grant(request.getResources());
+/*
+                        if(request.getOrigin().toString().equals("https://admin.graam.com/")) {
+                            request.grant(request.getResources());
+                        } else {
+                            request.deny();
+                        }
+ */
+                    }
+                });
             }
         });
 
