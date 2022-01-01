@@ -1,9 +1,20 @@
 package at.xtools.pwawrapper;
 
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import at.xtools.pwawrapper.ui.UIManager;
 import at.xtools.pwawrapper.webview.WebViewHelper;
@@ -34,25 +45,27 @@ public class MainActivity extends AppCompatActivity {
             Intent i = getIntent();
             String intentAction = i.getAction();
             // Handle URLs opened in Browser
-             if (!intentHandled && intentAction != null && intentAction.equals(Intent.ACTION_VIEW)){
-                    Uri intentUri = i.getData();
-                    String intentText = "";
-                    if (intentUri != null){
-                        intentText = intentUri.toString();
-                    }
-                    // Load up the URL specified in the Intent
-                    if (!intentText.equals("")) {
-                        intentHandled = true;
-                        webViewHelper.loadIntentUrl(intentText);
-                    }
-             } else {
-                 // Load up the Web App
-                 webViewHelper.loadHome();
-             }
+            if (!intentHandled && intentAction != null && intentAction.equals(Intent.ACTION_VIEW)) {
+                Uri intentUri = i.getData();
+                String intentText = "";
+                if (intentUri != null) {
+                    intentText = intentUri.toString();
+                }
+                // Load up the URL specified in the Intent
+                if (!intentText.equals("")) {
+                    intentHandled = true;
+                    webViewHelper.loadIntentUrl(intentText);
+                }
+            } else {
+                // Load up the Web App
+                webViewHelper.loadHome();
+            }
         } catch (Exception e) {
             // Load up the Web App
             webViewHelper.loadHome();
         }
+
+//        this.subscribeToTopic();
     }
 
     @Override
@@ -76,4 +89,20 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    private void subscribeToTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("weather")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Subscribed to weather topic";
+                        if (!task.isSuccessful()) {
+                            msg = "Failed to subscribe to weather topic";
+                        }
+                        Log.d("MainActivity", msg);
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }
+

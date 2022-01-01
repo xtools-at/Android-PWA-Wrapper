@@ -3,4 +3,6 @@
     <string name="offline_description">Hier tippen um es erneut zu versuchen!</string>
     <string name="noapp_heading">Keine App gefunden.</string>
     <string name="noapp_description">Keine App auf diesem Gerät kann die gewählte Aktion ausführen.</string>
+    <string name="title_activity_call">CallActivity</string>
+    <string name="incoming_call">Incoming Call</string>
 </resources>

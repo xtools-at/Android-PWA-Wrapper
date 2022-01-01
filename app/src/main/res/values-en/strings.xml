@@ -3,4 +3,6 @@
     <string name="offline_description">Tap here to retry!</string>
     <string name="noapp_heading">App not found.</string>
     <string name="noapp_description">No App on this device can carry out this action.</string>
+    <string name="title_activity_call">CallActivity</string>
+    <string name="incoming_call">Incoming Call</string>
 </resources>

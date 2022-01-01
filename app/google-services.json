@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "358518785097",
+    "project_id": "android-pwa-wrapper",
+    "storage_bucket": "android-pwa-wrapper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358518785097:android:77af61a87f6eace28eeb98",
+        "android_client_info": {
+          "package_name": "at.xtools.pwawrapper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358518785097-s8122ujh702e3mc27d3208n76baenoj6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "at.xtools.pwawrapper",
+            "certificate_hash": "42e03e1c91a2ecb6a02e096174660addd5046e02"
+          }
+        },
+        {
+          "client_id": "358518785097-jc5hmqp1alc2lg7f5h69bkdr50mq3fc3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpuWTJmrXZXkBJYTtSKwo4aGMSVwlr1GE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358518785097-jc5hmqp1alc2lg7f5h69bkdr50mq3fc3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

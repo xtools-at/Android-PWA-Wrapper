@@ -13,6 +13,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.webkit.CookieManager;
+import android.webkit.HttpAuthHandler;
+import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -21,6 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import at.xtools.pwawrapper.Constants;
+import at.xtools.pwawrapper.JavaScriptInterface;
 import at.xtools.pwawrapper.R;
 import at.xtools.pwawrapper.ui.UIManager;
 
@@ -81,6 +84,8 @@ public class WebViewHelper {
         // must be set for our js-popup-blocker:
         webSettings.setSupportMultipleWindows(true);
 
+        webView.addJavascriptInterface(new JavaScriptInterface(this.activity), "Android");
+
         // PWA settings
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             webSettings.setDatabasePath(activity.getApplicationContext().getFilesDir().getAbsolutePath());
@@ -136,6 +141,23 @@ public class WebViewHelper {
                 uiManager.setLoadingProgress(newProgress);
                 super.onProgressChanged(view, newProgress);
             }
+
+            @Override
+            public void onPermissionRequest(final PermissionRequest request) {
+                WebViewHelper.this.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        request.grant(request.getResources());
+/*
+                        if(request.getOrigin().toString().equals("https://admin.graam.com/")) {
+                            request.grant(request.getResources());
+                        } else {
+                            request.deny();
+                        }
+ */
+                    }
+                });
+            }
         });
 
         // Set up Webview client
@@ -166,6 +188,11 @@ public class WebViewHelper {
                         handleLoadError(error.getErrorCode());
                     }
                 }
+            }
+
+            @Override
+            public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+                handler.proceed("wephone", "smartcontact");
             }
         });
     }
